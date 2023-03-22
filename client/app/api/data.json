@@ -1,0 +1,9 @@
+{
+  "sort-algos": [
+    {
+      "quicksort": {
+        "description": "Quicksort is a sorting algorithm that is based on the divide and conquer approach."
+      }
+    }
+  ]
+}
