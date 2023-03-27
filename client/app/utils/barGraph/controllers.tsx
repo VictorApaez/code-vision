@@ -1,17 +1,16 @@
+import { v4 as uuidv4 } from "uuid";
+
 interface ItemsProp {
   items: Array<{ key: string; value: number }>;
   setItems: (items: Array<{ key: string; value: number }>) => void;
 }
 
 export const addBar = ({ items, setItems }: ItemsProp) => {
-  let array = [...items];
-  let randomNum = Math.floor(Math.random() * 20) + 1;
   const newItem = {
-    key: `item${array.length + 1}`,
-    value: randomNum,
+    key: uuidv4().slice(0, 5),
+    value: Math.floor(Math.random() * 20) + 1,
   };
-  array.push(newItem);
-  setItems(array);
+  setItems([...items, newItem]);
 };
 
 export const removeBar = ({ items, setItems }: ItemsProp) => {
