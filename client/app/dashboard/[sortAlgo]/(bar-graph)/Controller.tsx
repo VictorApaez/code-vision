@@ -57,18 +57,9 @@ export function Controller({
         <input type="range" onChange={(e) => handleRange(e)} />
       </div>
       <div className="flex h-10">
-        <div>{length}</div>
-        <button
-          onClick={handleRandomizeBars}
-          className={`${
-            disableBtn
-              ? "cursor-not-allowed bg-gray-300 text-gray-500 hover:bg-gray-300"
-              : ""
-          } hover:bg-blue-700 ease-in-out duration-300 bg-blue-500 bg-black-500 rounded-md p-3 ml-2 flex justify-center items-center text-white text-xl`}
-          disabled={disableBtn}
-        >
-          <ImShuffle />
-        </button>
+        <div className="flex items-center justify-center bg-blue-500 w-10 font-bold text-xl rounded-md text-white">
+          <p>{length}</p>
+        </div>
         <button
           onClick={handleAddBar}
           className={`${
@@ -90,6 +81,17 @@ export function Controller({
           disabled={disableBtn}
         >
           <AiOutlineMinus />
+        </button>
+        <button
+          onClick={handleRandomizeBars}
+          className={`${
+            disableBtn
+              ? "cursor-not-allowed bg-gray-300 text-gray-500 hover:bg-gray-300"
+              : ""
+          } hover:bg-blue-700 ease-in-out duration-300 bg-blue-500 bg-black-500 rounded-md p-3 ml-2 flex justify-center items-center text-white text-xl`}
+          disabled={disableBtn}
+        >
+          <ImShuffle />
         </button>
       </div>
     </div>
