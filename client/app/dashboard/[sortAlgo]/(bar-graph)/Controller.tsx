@@ -2,28 +2,47 @@ import React from "react";
 import { FaPlay, FaPause, FaStop } from "react-icons/fa";
 import { ImShuffle } from "react-icons/im";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+import {
+  addBar,
+  removeBar,
+  randomizeBars,
+} from "@/app/utils/barGraph/controllers";
 
 interface ControllerProps {
+  items: Array<{ key: string; value: number }>;
+  setItems: (items: Array<{ key: string; value: number }>) => void;
   animateSorting: () => void;
-  randomizeBars: () => void;
   disableBtn: boolean;
-  addBar: () => void;
-  removeBar: () => void;
+  length: number;
+  setAnimationSpeed: (speed: number) => void;
 }
 
 export function Controller({
+  items,
+  setItems,
   animateSorting,
-  randomizeBars,
   disableBtn,
-  addBar,
-  removeBar,
+  length,
+  setAnimationSpeed,
 }: ControllerProps) {
+  const handleAddBar = () => addBar({ items, setItems });
+  const handleRemoveBar = () => removeBar({ items, setItems });
+  const handleRandomizeBars = () => randomizeBars({ items, setItems });
+
+  function handleRange(e: React.ChangeEvent<HTMLInputElement>) {
+    let speed = parseInt(e.target.value);
+    setAnimationSpeed(speed * 5);
+  }
+
   return (
     <div className="flex justify-between items-center box-border h-fit-content  mb-10">
       <div>
         <button
           onClick={animateSorting}
-          className="rounded-full bg-green-500 p-3 m-2 text-white"
+          className={`${
+            disableBtn ? "cursor-not-allowed bg-gray-300" : ""
+          } rounded-full bg-green-500 p-3 m-2 text-white `}
+          disabled={disableBtn}
         >
           <FaPlay />
         </button>
@@ -35,11 +54,12 @@ export function Controller({
         </button>
       </div>
       <div>
-        <input type="range" />
+        <input type="range" onChange={(e) => handleRange(e)} />
       </div>
       <div className="flex h-10">
+        <div>{length}</div>
         <button
-          onClick={randomizeBars}
+          onClick={handleRandomizeBars}
           className={`${
             disableBtn
               ? "cursor-not-allowed bg-gray-300 text-gray-500 hover:bg-gray-300"
@@ -50,7 +70,7 @@ export function Controller({
           <ImShuffle />
         </button>
         <button
-          onClick={addBar}
+          onClick={handleAddBar}
           className={`${
             disableBtn
               ? "cursor-not-allowed bg-gray-300 text-gray-500 hover:bg-gray-300"
@@ -61,7 +81,7 @@ export function Controller({
           <AiOutlinePlus />
         </button>
         <button
-          onClick={removeBar}
+          onClick={handleRemoveBar}
           className={`${
             disableBtn
               ? "cursor-not-allowed bg-gray-300 text-gray-500 hover:bg-gray-300"
