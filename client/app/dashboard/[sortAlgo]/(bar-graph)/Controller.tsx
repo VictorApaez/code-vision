@@ -41,17 +41,19 @@ export function Controller({
           onClick={animateSorting}
           className={`${
             disableBtn ? "cursor-not-allowed bg-gray-300" : ""
-          } rounded-full bg-green-500 p-3 m-2 text-white `}
+          } rounded-md bg-green-500 p-3 m-2 text-white flex items-center justify-center`}
           disabled={disableBtn}
         >
           <FaPlay />
+          <p className="ml-2 font-bold">Start</p>
         </button>
-        <button className="rounded-full bg-yellow-500 p-3 m-2 text-white">
+        {/* TO DO: Implement stop and pause button - need to do more research */}
+        {/* <button className="rounded-full bg-yellow-500 p-3 m-2 text-white">
           <FaPause />
         </button>
         <button className="rounded-full bg-red-500 p-3 m-2 text-white">
           <FaStop />
-        </button>
+        </button> */}
       </div>
       <div>
         <input type="range" onChange={(e) => handleRange(e)} />
