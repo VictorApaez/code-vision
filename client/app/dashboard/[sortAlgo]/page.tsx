@@ -7,7 +7,7 @@ import Complexity from "./Complexity";
 import Description from "./Description";
 
 interface DashboardParams {
-  params: { sortAlgo: string };
+  params: { sortAlgo: "quicksort" | "bubblesort" };
 }
 
 interface sortingAlgo {
