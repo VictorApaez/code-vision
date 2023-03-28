@@ -6,8 +6,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
-  Label,
   ResponsiveContainer,
 } from "recharts";
 
@@ -43,7 +41,13 @@ export default function Complexity() {
 
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
-          <Line type="monotone" data={worstCase} dataKey="y" stroke="#e8ba30" />
+          <Line
+            type="monotone"
+            data={worstCase}
+            dataKey="y"
+            stroke="#d15134"
+            strokeWidth={4}
+          />
         </LineChart>
       </ResponsiveContainer>
     </>
