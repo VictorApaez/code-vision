@@ -1,3 +1,5 @@
+import Aside from "./Aside";
+
 export default function DashboardLayout({
   children,
 }: {
@@ -5,9 +7,7 @@ export default function DashboardLayout({
 }) {
   return (
     <div className="h-screen w-screen flex">
-      <section className="bg-gray-100 border border-gray-300 p-4">
-        This is the aside in dashboard
-      </section>
+      <Aside />
       {children}
     </div>
   );
