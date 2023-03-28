@@ -3,6 +3,7 @@ import { Controller } from "./Controller";
 import React, { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { bubbleSort } from "@/app/utils/sortingAlgos/bubbleSort";
+// import { quickSort } from "@/app/utils/sortingAlgos/quickSort";
 
 const initialItems = [
   { key: "item1", value: 20 },
