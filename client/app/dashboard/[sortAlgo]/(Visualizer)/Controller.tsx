@@ -55,9 +55,9 @@ export function Controller({
           <FaStop />
         </button> */}
       </div>
-      <div>
+      {/* <div>
         <input type="range" onChange={(e) => handleRange(e)} />
-      </div>
+      </div> */}
       <div className="flex h-10">
         <div className="flex items-center justify-center bg-blue-500 w-10 font-bold text-xl rounded-md text-white">
           <p>{length}</p>
