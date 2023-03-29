@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useRef } from "react";
 
 interface Props {
   item: {
@@ -11,14 +12,14 @@ interface Props {
 
 export const Bar = ({ item, isSwapping, animationSpeed }: Props) => {
   const height = item.value * 5 + "%";
-
   const swappingStyles = {
     height,
-    backgroundColor: "#e4c517",
+    backgroundColor: "#050c59",
+    boxShadow: "2px 2px 10px 5px #7984f5",
   };
   const regularStyles = {
     height,
-    background: `linear-gradient(0deg, rgba(255,0,0,1) 0%, #6b0505 ${height})`,
+    backgroundColor: `rgb(191, 25, 25)`,
     boxShadow: "none",
   };
 
@@ -26,8 +27,11 @@ export const Bar = ({ item, isSwapping, animationSpeed }: Props) => {
     <motion.div
       layout
       id={item.key}
-      className="cursor-move transition-colors duration-200 rounded-md w-full mx-1"
-      style={isSwapping ? swappingStyles : regularStyles}
+      className={`cursor-move transition-colors duration-200 rounded-md w-full`}
+      style={{
+        ...(isSwapping ? swappingStyles : regularStyles),
+        margin: `0 ${15}px`,
+      }}
       transition={{ duration: animationSpeed / 1000 }}
     />
   );
