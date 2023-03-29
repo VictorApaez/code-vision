@@ -1,6 +1,6 @@
 import React from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
-export function SelectAlgo({}) {
+export function SelectAlgo() {
   return (
     <div className="mx-4">
       <div className="flex items-center ">
