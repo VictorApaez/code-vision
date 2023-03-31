@@ -1,8 +1,15 @@
+interface SortingState {
+  pivotIndex: number | null;
+  leftIndex: number | null;
+  rightIndex: number | null;
+}
+
 interface SortingAlgo {
   items: Array<{ key: string; value: number }>;
   setItems: (items: Array<{ key: string; value: number }>) => void;
   animationSpeed: number;
   setSwappingItems: (swappingItems: Array<number>) => void;
+  setSortingState: (sortingState: SortingState) => void;
 }
 
 export const quickSort = async ({
@@ -10,68 +17,60 @@ export const quickSort = async ({
   setItems,
   animationSpeed,
   setSwappingItems,
+  setSortingState,
 }: SortingAlgo) => {
-  const newItems = [...items];
+  let arrCopy = [...items];
 
-  const swap = async (
-    items: Array<{ key: string; value: number }>,
-    leftIndex: number,
-    rightIndex: number
-  ) => {
-    const temp = items[leftIndex];
-    items[leftIndex] = items[rightIndex];
-    items[rightIndex] = temp;
-    setSwappingItems([leftIndex, rightIndex]);
+  async function swapByIdx(arr, left, right) {
+    [arr[left], arr[left]] = [arr[left], arr[left]];
+    setItems(arr);
+    setSortingState({ pivotIndex: right, leftIndex: left, rightIndex: right });
     await new Promise((resolve) => setTimeout(resolve, animationSpeed));
-  };
+  }
 
-  const partition = async (
-    items: Array<{ key: string; value: number }>,
-    left: number,
-    right: number
-  ) => {
-    const pivot = items[Math.floor((right + left) / 2)].value;
+  async function partition(arr, left, right) {
+    let pivotIndex = Math.floor((left + right) / 2);
+    let pivot = arr[pivotIndex].value; //middle element
     let i = left;
     let j = right;
 
+    setSortingState({ pivotIndex, leftIndex: left, rightIndex: right });
+    await new Promise((resolve) => setTimeout(resolve, animationSpeed));
+
     while (i <= j) {
-      while (items[i].value < pivot) {
+      while (arr[i].value < pivot) {
         i++;
+        setSortingState({ pivotIndex, leftIndex: i, rightIndex: j });
+        await new Promise((resolve) => setTimeout(resolve, animationSpeed));
       }
-      while (items[j].value > pivot) {
+      while (arr[j].value > pivot) {
         j--;
+        setSortingState({ pivotIndex, leftIndex: i, rightIndex: j });
+        await new Promise((resolve) => setTimeout(resolve, animationSpeed));
       }
       if (i <= j) {
-        swap(items, i, j);
-        setSwappingItems([i, j]);
-        await new Promise((resolve) => setTimeout(resolve, animationSpeed));
-        setItems([...items]);
+        await swapByIdx(arr, i, j);
         i++;
         j--;
+        setSortingState({ pivotIndex, leftIndex: i, rightIndex: j });
+        await new Promise((resolve) => setTimeout(resolve, animationSpeed));
       }
     }
     return i;
-  };
+  }
 
-  const quickSortRecursive = async (
-    items: Array<{ key: string; value: number }>,
-    left: number,
-    right: number
-  ) => {
-    let index;
-
-    if (items.length > 1) {
-      index = await partition(items, left, right);
-      if (left < index - 1) {
-        await quickSortRecursive(items, left, index - 1);
-      }
-      if (index < right) {
-        await quickSortRecursive(items, index, right);
-      }
+  async function sort(arr, left, right) {
+    if (arr.length <= 1) return arr;
+    if (left < right) {
+      let index = await partition(arr, left, right);
+      await sort(arr, left, index - 1);
+      await sort(arr, index, right);
     }
-  };
+    return arr;
+  }
 
-  await quickSortRecursive(newItems, 0, newItems.length - 1);
-
+  const test = await sort(arrCopy, 0, arrCopy.length - 1);
+  console.log(test);
+  setItems(test);
   setSwappingItems([-1, -1]);
 };
