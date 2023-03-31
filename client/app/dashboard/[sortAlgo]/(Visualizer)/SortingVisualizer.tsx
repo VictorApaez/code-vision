@@ -18,11 +18,11 @@ const initialItems = [
   { key: "item10", value: 10 },
 ];
 
-export default function QuickSortVisualizer() {
+export default function SortingVisualizer() {
   const [items, setItems] = useState(initialItems);
   const [swappingItems, setSwappingItems] = useState([-1, -1]);
   const [disableBtn, setDisableBtn] = useState(false);
-  const [animationSpeed, setAnimationSpeed] = useState(120);
+  const [animationSpeed, setAnimationSpeed] = useState(220);
 
   const animateSorting = async () => {
     setDisableBtn(true);
