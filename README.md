@@ -4,7 +4,7 @@ Code Vision is an interactive web application designed to help users visualize a
 
 The primary motivation behind building this app is to create a learning tool and a personal note repository for search and sorting algorithms. As a developer, I have always been fascinated by these algorithms, and this project allows me to explore new concepts and share them with others.
 
-<img src="./images/bubblesort.png" />
+![code-vision](https://github.com/VictorApaez/code-vision/assets/56009643/fba73f46-e129-400c-a44e-cf1442c3a762)
 
 ## Features
 
